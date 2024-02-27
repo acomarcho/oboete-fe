@@ -1,9 +1,39 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import Joi from "joi";
+
+const registerSchema = Joi.object({
+  username: Joi.string().required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
+  password: Joi.string().required(),
+});
+
+type RegisterFormData = {
+  username: string;
+  email: string;
+  password: string;
+};
+
 export default function RegisterPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>({
+    resolver: joiResolver(registerSchema),
+  });
+
+  const onSubmit = handleSubmit((data) => console.log(data));
+
   return (
     <div className="bg-hero-background bg-cover h-screen bg-bottom grid place-items-center p-8">
       <div className="bg-white w-full max-w-[400px] p-8 rounded-md drop-shadow">
         <h1 className="text-2xl font-bold">Register an account</h1>
-        <form className="flex flex-col gap-8 mt-8">
+        <form className="flex flex-col gap-8 mt-8" onSubmit={onSubmit}>
           <div className="flex flex-col gap-2">
             <label
               htmlFor="username"
@@ -14,9 +44,12 @@ export default function RegisterPage() {
             <input
               className="border text-sm py-2 px-4 border-blue-100 rounded-md"
               type="text"
-              name="username"
               placeholder="yamadaryo"
+              {...register("username")}
             />
+            {errors.username && (
+              <p className="text-red-500 text-xs">Username cannot be empty!</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-xs font-bold text-blue-800">
@@ -25,9 +58,12 @@ export default function RegisterPage() {
             <input
               className="border text-sm py-2 px-4 border-blue-100 rounded-md"
               type="email"
-              name="email"
               placeholder="ryo@yamada.com"
+              {...register("email")}
             />
+            {errors.email && (
+              <p className="text-red-500 text-xs">Must be a valid email!</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -39,9 +75,12 @@ export default function RegisterPage() {
             <input
               className="border text-sm py-2 px-4 border-blue-100 rounded-md"
               type="password"
-              name="password"
               placeholder="bocchitherock"
+              {...register("password")}
             />
+            {errors.password && (
+              <p className="text-red-500 text-xs">Password cannot be empty!</p>
+            )}
           </div>
           <button
             type="submit"
