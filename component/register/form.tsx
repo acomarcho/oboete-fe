@@ -1,5 +1,6 @@
 "use client";
 
+import { axiosPost } from "@/util/axios";
 import { cn } from "@/util/cn";
 import { BE_URL, PageStatus } from "@/util/constants";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -7,6 +8,7 @@ import axios from "axios";
 import Joi from "joi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const registerSchema = Joi.object({
 	username: Joi.string().required(),
@@ -37,13 +39,15 @@ export default function RegisterForm() {
 		try {
 			setPageStatus(PageStatus.Loading);
 
-			await axios.post(`${BE_URL}/user/register`, {
+			await axiosPost(`${BE_URL}/user/register`, {
 				username: data.username,
 				email: data.email,
 				password: data.password,
 			});
-		} catch (error) {
-			console.log(error);
+
+			toast.success(
+				"Successfully registered! You can now log in to your account.",
+			);
 		} finally {
 			setPageStatus(PageStatus.None);
 		}
