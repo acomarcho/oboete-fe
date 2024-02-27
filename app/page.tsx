@@ -7,9 +7,12 @@ export default function Home() {
           <p className="text-base text-blue-100 mt-4 max-w-[30ch]">
             Always remember, with the power of simplicity and spaced repetition.
           </p>
-          <button className="mt-12 bg-blue-200 text-blue-950 px-4 py-2 font-bold rounded-md transition-all hover:bg-blue-300 hover:cursor-pointer">
+          <a
+            href="/register"
+            className="inline-block mt-12 bg-blue-200 text-blue-950 px-4 py-2 font-bold rounded-md transition-all hover:bg-blue-300 hover:cursor-pointer"
+          >
             Start remembering, now!
-          </button>
+          </a>
         </div>
       </div>
     </div>
