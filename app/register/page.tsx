@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { cn } from "@/util/cn";
 import Joi from "joi";
 
 const registerSchema = Joi.object({
@@ -42,7 +43,12 @@ export default function RegisterPage() {
               Username <span className="text-red-500">*</span>
             </label>
             <input
-              className="border text-sm py-2 px-4 border-blue-100 rounded-md"
+              className={cn(
+                "border text-sm py-2 px-4 border-blue-100 rounded-md",
+                {
+                  "border-red-500": errors.username,
+                }
+              )}
               type="text"
               placeholder="yamadaryo"
               {...register("username")}
@@ -56,7 +62,12 @@ export default function RegisterPage() {
               Email <span className="text-red-500">*</span>
             </label>
             <input
-              className="border text-sm py-2 px-4 border-blue-100 rounded-md"
+              className={cn(
+                "border text-sm py-2 px-4 border-blue-100 rounded-md",
+                {
+                  "border-red-500": errors.email,
+                }
+              )}
               type="email"
               placeholder="ryo@yamada.com"
               {...register("email")}
@@ -73,7 +84,12 @@ export default function RegisterPage() {
               Password <span className="text-red-500">*</span>
             </label>
             <input
-              className="border text-sm py-2 px-4 border-blue-100 rounded-md"
+              className={cn(
+                "border text-sm py-2 px-4 border-blue-100 rounded-md",
+                {
+                  "border-red-500": errors.password,
+                }
+              )}
               type="password"
               placeholder="bocchitherock"
               {...register("password")}
