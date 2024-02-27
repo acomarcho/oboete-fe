@@ -10,27 +10,23 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const registerSchema = Joi.object({
-	username: Joi.string().required(),
-	email: Joi.string()
-		.email({ tlds: { allow: false } })
-		.required(),
+const loginSchema = Joi.object({
+	usernameOrEmail: Joi.string().required(),
 	password: Joi.string().required(),
 });
 
-type RegisterFormData = {
-	username: string;
-	email: string;
+type LoginFormData = {
+	usernameOrEmail: string;
 	password: string;
 };
 
-export default function RegisterForm() {
+export default function LoginForm() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<RegisterFormData>({
-		resolver: joiResolver(registerSchema),
+	} = useForm<LoginFormData>({
+		resolver: joiResolver(loginSchema),
 	});
 
 	const [pageStatus, setPageStatus] = useState<PageStatus>(PageStatus.None);
@@ -41,17 +37,14 @@ export default function RegisterForm() {
 		try {
 			setPageStatus(PageStatus.Loading);
 
-			await axiosPost(`${BE_URL}/user/register`, {
-				username: data.username,
-				email: data.email,
+			await axiosPost(`${BE_URL}/user/login`, {
+				usernameOrEmail: data.usernameOrEmail,
 				password: data.password,
 			});
 
-			toast.success(
-				"Successfully registered! You can now log in to your account.",
-			);
+			toast.success("Successfully logged in!");
 
-			router.push("/login");
+			router.push("/");
 		} catch {
 		} finally {
 			setPageStatus(PageStatus.None);
@@ -62,34 +55,20 @@ export default function RegisterForm() {
 		<form className="flex flex-col gap-8 mt-8" onSubmit={onSubmit}>
 			<div className="flex flex-col gap-2">
 				<label htmlFor="username" className="text-xs font-bold text-blue-800">
-					Username <span className="text-red-500">*</span>
+					Username or email <span className="text-red-500">*</span>
 				</label>
 				<input
 					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
-						"border-red-500": errors.username,
+						"border-red-500": errors.usernameOrEmail,
 					})}
 					type="text"
 					placeholder="yamadaryo"
-					{...register("username")}
+					{...register("usernameOrEmail")}
 				/>
-				{errors.username && (
-					<p className="text-red-500 text-xs">Username cannot be empty!</p>
-				)}
-			</div>
-			<div className="flex flex-col gap-2">
-				<label htmlFor="email" className="text-xs font-bold text-blue-800">
-					Email <span className="text-red-500">*</span>
-				</label>
-				<input
-					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
-						"border-red-500": errors.email,
-					})}
-					type="email"
-					placeholder="ryo@yamada.com"
-					{...register("email")}
-				/>
-				{errors.email && (
-					<p className="text-red-500 text-xs">Must be a valid email!</p>
+				{errors.usernameOrEmail && (
+					<p className="text-red-500 text-xs">
+						Username or email cannot be empty!
+					</p>
 				)}
 			</div>
 			<div className="flex flex-col gap-2">
@@ -113,7 +92,7 @@ export default function RegisterForm() {
 				className="mt-4 bg-blue-900 text-blue-50 px-4 py-2 font-bold rounded-md transition-all hover:bg-blue-600 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
 				disabled={pageStatus === PageStatus.Loading}
 			>
-				Register {pageStatus === PageStatus.Loading && "..."}
+				Login {pageStatus === PageStatus.Loading && "..."}
 			</button>
 		</form>
 	);
