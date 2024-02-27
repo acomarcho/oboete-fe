@@ -4,6 +4,9 @@ import { cn } from "@/util/cn";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useState } from "react";
+import { BE_URL, PageStatus } from "@/util/constants";
 
 const registerSchema = Joi.object({
   username: Joi.string().required(),
@@ -28,7 +31,24 @@ export default function RegisterForm() {
     resolver: joiResolver(registerSchema),
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const [pageStatus, setPageStatus] = useState<PageStatus>(PageStatus.None);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setPageStatus(PageStatus.Loading);
+
+      await axios.post(`${BE_URL}/user/register`, {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setPageStatus(PageStatus.None);
+    }
+  });
+
   return (
     <form className="flex flex-col gap-8 mt-8" onSubmit={onSubmit}>
       <div className="flex flex-col gap-2">
@@ -81,9 +101,10 @@ export default function RegisterForm() {
       </div>
       <button
         type="submit"
-        className="mt-4 bg-blue-900 text-blue-50 px-4 py-2 font-bold rounded-md transition-all hover:bg-blue-600 hover:cursor-pointer"
+        className="mt-4 bg-blue-900 text-blue-50 px-4 py-2 font-bold rounded-md transition-all hover:bg-blue-600 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={pageStatus === PageStatus.Loading}
       >
-        Register
+        Register {pageStatus === PageStatus.Loading && "..."}
       </button>
     </form>
   );
