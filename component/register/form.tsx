@@ -4,7 +4,6 @@ import { axiosPost } from "@/util/axios";
 import { cn } from "@/util/cn";
 import { BE_URL, PageStatus } from "@/util/constants";
 import { joiResolver } from "@hookform/resolvers/joi";
-import axios from "axios";
 import Joi from "joi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
