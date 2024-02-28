@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Input } from "../ui/input";
 
 const registerSchema = Joi.object({
 	username: Joi.string().required(),
@@ -64,8 +65,8 @@ export default function RegisterForm() {
 				<label htmlFor="username" className="text-xs font-bold text-blue-800">
 					Username <span className="text-red-500">*</span>
 				</label>
-				<input
-					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
+				<Input
+					className={cn({
 						"border-red-500": errors.username,
 					})}
 					type="text"
@@ -80,8 +81,8 @@ export default function RegisterForm() {
 				<label htmlFor="email" className="text-xs font-bold text-blue-800">
 					Email <span className="text-red-500">*</span>
 				</label>
-				<input
-					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
+				<Input
+					className={cn({
 						"border-red-500": errors.email,
 					})}
 					type="email"
@@ -96,8 +97,8 @@ export default function RegisterForm() {
 				<label htmlFor="password" className="text-xs font-bold text-blue-800">
 					Password <span className="text-red-500">*</span>
 				</label>
-				<input
-					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
+				<Input
+					className={cn({
 						"border-red-500": errors.password,
 					})}
 					type="password"

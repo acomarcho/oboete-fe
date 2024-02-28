@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Input } from "../ui/input";
 
 const loginSchema = Joi.object({
 	usernameOrEmail: Joi.string().required(),
@@ -57,8 +58,8 @@ export default function LoginForm() {
 				<label htmlFor="username" className="text-xs font-bold text-blue-800">
 					Username or email <span className="text-red-500">*</span>
 				</label>
-				<input
-					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
+				<Input
+					className={cn({
 						"border-red-500": errors.usernameOrEmail,
 					})}
 					type="text"
@@ -75,8 +76,8 @@ export default function LoginForm() {
 				<label htmlFor="password" className="text-xs font-bold text-blue-800">
 					Password <span className="text-red-500">*</span>
 				</label>
-				<input
-					className={cn("border text-sm py-2 px-4 border-blue-100 rounded-md", {
+				<Input
+					className={cn({
 						"border-red-500": errors.password,
 					})}
 					type="password"
