@@ -33,7 +33,7 @@ export default function Home() {
 				</FadeOnScroll>
 				<div className="mt-12 flex flex-col gap-8 lg:flex-row">
 					<FadeOnScroll>
-						<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center">
+						<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center transition transform hover:scale-105 hover:shadow-lg">
 							<h2 className="font-bold text-xl text-blue-950 uppercase tracking-wider">
 								Spaced repetition
 							</h2>
@@ -63,7 +63,7 @@ export default function Home() {
 						</div>
 					</FadeOnScroll>
 					<FadeOnScroll>
-						<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center">
+						<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center transition transform hover:scale-105 hover:shadow-lg">
 							<h2 className="font-bold text-xl text-blue-950 uppercase tracking-wider">
 								Focus on free recall
 							</h2>
@@ -95,7 +95,7 @@ export default function Home() {
 						</div>
 					</FadeOnScroll>
 					<FadeOnScroll>
-						<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center">
+						<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center transition transform hover:scale-105 hover:shadow-lg">
 							<h2 className="font-bold text-xl text-blue-950 uppercase tracking-wider">
 								Minimal effort
 							</h2>
