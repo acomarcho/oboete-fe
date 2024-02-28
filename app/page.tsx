@@ -26,7 +26,7 @@ export default function Home() {
 					Remember concepts, effortlessly
 				</p>
 				<div className="mt-8 flex flex-col gap-8 lg:flex-row">
-					<div className="bg-blue-100 p-6 shadow rounded-md space-y-4 text-center">
+					<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center">
 						<h2 className="font-bold text-xl text-blue-950 uppercase tracking-wider">
 							Spaced repetition
 						</h2>
@@ -54,7 +54,7 @@ export default function Home() {
 							memory with spaced intervals.
 						</p>
 					</div>
-					<div className="bg-blue-100 p-6 shadow rounded-md space-y-4 text-center">
+					<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center">
 						<h2 className="font-bold text-xl text-blue-950 uppercase tracking-wider">
 							Focus on free recall
 						</h2>
@@ -84,7 +84,7 @@ export default function Home() {
 							information for deeper understanding and retention.
 						</p>
 					</div>
-					<div className="bg-blue-100 p-6 shadow rounded-md space-y-4 text-center">
+					<div className="bg-blue-50 p-6 shadow rounded-md space-y-4 text-center">
 						<h2 className="font-bold text-xl text-blue-950 uppercase tracking-wider">
 							Minimal effort
 						</h2>
