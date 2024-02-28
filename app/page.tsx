@@ -22,7 +22,7 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className="max-w-wrapper mx-auto px-8 py-16">
+			<div className="max-w-wrapper mx-auto px-8 py-20">
 				<FadeOnScroll>
 					<h1 className="text-4xl font-bold text-blue-950 text-center">
 						Introducing Oboete
@@ -121,6 +121,35 @@ export default function Home() {
 								you to recall at optimal times for effortless learning.
 							</p>
 						</div>
+					</FadeOnScroll>
+				</div>
+			</div>
+			<div className="bg-benefit-1 bg-cover bg-center">
+				<div className="max-w-wrapper mx-auto px-8 py-20">
+					<FadeOnScroll>
+						<>
+							<h1 className="text-4xl font-bold text-blue-950">
+								Learn more in less time
+							</h1>
+							<p className="text-blue-900 mt-4">
+								Achieve better results with less time spent studying!
+							</p>
+						</>
+					</FadeOnScroll>
+				</div>
+			</div>
+			<div className="bg-benefit-2 bg-cover bg-bottom">
+				<div className="max-w-wrapper mx-auto px-8 py-20 text-end">
+					<FadeOnScroll>
+						<>
+							<h1 className="text-4xl font-bold text-blue-50">
+								Conquer stress and ace your challenges
+							</h1>
+							<p className="text-blue-200 mt-4">
+								Reduce study anxiety and succeed in diverse academic and
+								professional settings!
+							</p>
+						</>
 					</FadeOnScroll>
 				</div>
 			</div>
