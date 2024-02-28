@@ -43,11 +43,11 @@ export default function Home() {
 									aria-label="Hourglass icon"
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 24 24"
-									stroke-width="1s5"
+									strokeWidth="1s5"
 									stroke="currentColor"
 									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 									<path d="M6.5 7h11" />
@@ -73,11 +73,11 @@ export default function Home() {
 									aria-label="Brain icon"
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 24 24"
-									stroke-width="1.5"
+									strokeWidth="1.5"
 									stroke="currentColor"
 									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 									<path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" />
@@ -105,11 +105,11 @@ export default function Home() {
 									aria-label="Feather icon"
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 24 24"
-									stroke-width="1.5"
+									strokeWidth="1.5"
 									stroke="currentColor"
 									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								>
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 									<path d="M4 20l10 -10m0 -5v5h5m-9 -1v5h5m-9 -1v5h5m-5 -5l4 -4l4 -4" />
