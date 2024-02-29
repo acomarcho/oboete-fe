@@ -1,8 +1,8 @@
 "use client";
 
-import { axiosPost } from "@/util/axios";
-import { cn } from "@/util/cn";
-import { BE_URL, PageStatus } from "@/util/constants";
+import { axiosPost } from "@/utils/axios";
+import { cn } from "@/utils/cn";
+import { BE_URL, PageStatus } from "@/utils/constants";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { useRouter } from "next/navigation";

@@ -1,3 +1,4 @@
+import JotaiProvider from "@/components/jotai/provider";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Toaster } from "sonner";
@@ -19,8 +20,12 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={plus_jakarta_sans.className}>
-				<Toaster richColors />
-				{children}
+				<JotaiProvider>
+					<>
+						<Toaster richColors />
+						{children}
+					</>
+				</JotaiProvider>
 			</body>
 		</html>
 	);

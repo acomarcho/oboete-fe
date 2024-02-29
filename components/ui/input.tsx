@@ -1,4 +1,4 @@
-import { cn } from "@/util/cn";
+import { cn } from "@/utils/cn";
 import { forwardRef } from "react";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
