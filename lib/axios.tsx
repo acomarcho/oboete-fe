@@ -3,7 +3,7 @@
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export async function axiosPost<T>(url: string, data: unknown): Promise<T> {
+export async function axiosPost<T>(url: string, data?: unknown): Promise<T> {
 	try {
 		const response = await axios.post<T>(url, data, { withCredentials: true });
 		return response.data;

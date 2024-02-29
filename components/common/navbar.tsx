@@ -12,9 +12,33 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { axiosPost } from "@/lib/axios";
+import { BE_URL, PageStatus } from "@/lib/constants";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Navbar() {
 	const [user, setUser] = useAtom(userAtom);
+	const [pageStatus, setPageStatus] = useState<PageStatus>(PageStatus.None);
+
+	const router = useRouter();
+
+	const handleLogOut = async () => {
+		try {
+			setPageStatus(PageStatus.Loading);
+
+			await axiosPost(`${BE_URL}/user/logout`);
+			setUser(null);
+
+			toast.success("Logged out succesfully! See you later!");
+
+			router.push("/");
+		} catch {
+		} finally {
+			setPageStatus(PageStatus.None);
+		}
+	};
 
 	return (
 		<div className="fixed top-0 left-0 w-screen bg-blue-950 z-50">
@@ -56,9 +80,12 @@ export default function Navbar() {
 								<DropdownMenuItem>
 									<button
 										type="button"
-										className="w-full flex justify-between items-center text-blue-950"
+										className="w-full flex justify-between items-center text-blue-950 disabled:opacity-50 disabled:cursor-not-allowed"
+										onClick={() => handleLogOut()}
 									>
-										<span>Log out</span>
+										<span>
+											Log out {pageStatus === PageStatus.Loading && "..."}
+										</span>
 										<svg
 											role="img"
 											aria-label="Log out icon"
