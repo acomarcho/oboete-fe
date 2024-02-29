@@ -5,7 +5,7 @@ export default function Home() {
 		<>
 			<div className="bg-hero-background bg-cover bg-bottom">
 				<div className="max-w-wrapper mx-auto">
-					<div className="px-8 py-20">
+					<div className="px-8 py-40">
 						<FadeOnScroll>
 							<h1 className="text-4xl font-bold text-white">覚えて (Oboete)</h1>
 							<p className="text-base text-blue-100 mt-4 max-w-[30ch]">
@@ -125,7 +125,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="bg-benefit-1 bg-cover bg-center">
-				<div className="max-w-wrapper mx-auto px-8 py-20">
+				<div className="max-w-wrapper mx-auto px-8 py-40">
 					<FadeOnScroll>
 						<>
 							<h1 className="text-4xl font-bold text-blue-950">
@@ -139,7 +139,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="bg-benefit-2 bg-cover bg-bottom">
-				<div className="max-w-wrapper mx-auto px-8 py-20 text-end">
+				<div className="max-w-wrapper mx-auto px-8 py-40 text-end">
 					<FadeOnScroll>
 						<>
 							<h1 className="text-4xl font-bold text-blue-50">

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "npx @biomejs/biome check --apply ./app ./component ./util"
+    "format": "npx @biomejs/biome check --apply ./app ./components ./utils ./atoms"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

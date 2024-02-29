@@ -1,3 +1,4 @@
+import Navbar from "@/components/common/navbar";
 import JotaiProvider from "@/components/jotai/provider";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
@@ -23,6 +24,7 @@ export default function RootLayout({
 				<JotaiProvider>
 					<>
 						<Toaster richColors />
+						<Navbar />
 						{children}
 					</>
 				</JotaiProvider>
