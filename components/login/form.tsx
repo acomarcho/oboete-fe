@@ -1,7 +1,7 @@
 "use client";
 
 import { userAtom } from "@/atoms/user";
-import { axiosPost } from "@/lib/axios";
+import { useAxios } from "@/lib/axios";
 import { BE_URL, PageStatus } from "@/lib/constants";
 import { LoginResponse } from "@/lib/responses/login";
 import { cn } from "@/lib/utils";
@@ -25,6 +25,8 @@ type LoginFormData = {
 };
 
 export default function LoginForm() {
+	const { axiosPost } = useAxios();
+
 	const {
 		register,
 		handleSubmit,

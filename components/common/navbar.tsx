@@ -12,7 +12,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { axiosPost } from "@/lib/axios";
+import { useAxios } from "@/lib/axios";
 import { BE_URL, PageStatus } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -23,6 +23,7 @@ export default function Navbar() {
 	const [pageStatus, setPageStatus] = useState<PageStatus>(PageStatus.None);
 
 	const router = useRouter();
+	const { axiosPost } = useAxios();
 
 	const handleLogOut = async () => {
 		try {

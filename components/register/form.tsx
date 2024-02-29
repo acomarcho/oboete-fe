@@ -1,6 +1,6 @@
 "use client";
 
-import { axiosPost } from "@/lib/axios";
+import { useAxios } from "@/lib/axios";
 import { BE_URL, PageStatus } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -26,6 +26,8 @@ type RegisterFormData = {
 };
 
 export default function RegisterForm() {
+	const { axiosPost } = useAxios();
+
 	const {
 		register,
 		handleSubmit,
