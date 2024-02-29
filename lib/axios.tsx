@@ -1,11 +1,46 @@
 "use client";
 
 import axios, { AxiosError } from "axios";
+import { StatusCodes } from "http-status-codes";
 import { toast } from "sonner";
+import { BE_URL } from "./constants";
+
+const NO_RETRY_HEADER = "x-no-retry";
+
+const privateAxiosClient = axios.create({ withCredentials: true });
+privateAxiosClient.interceptors.response.use(
+	(response) => response,
+	async (error) => {
+		if (error.config.headers?.[NO_RETRY_HEADER]) {
+			return Promise.reject(error);
+		}
+
+		if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
+			error.config.headers ||= {};
+			error.config.headers[NO_RETRY_HEADER] = "true";
+			await getRefreshToken();
+
+			return privateAxiosClient(error.config);
+		}
+		return Promise.reject(error);
+	},
+);
+
+async function getRefreshToken(): Promise<string> {
+	const cleanAxiosClient = axios.create({ withCredentials: true });
+
+	const { data: responseData } = await cleanAxiosClient.post<{
+		data: { accessToken: string };
+	}>(`${BE_URL}/user/refresh`, null, { withCredentials: true });
+
+	return responseData.data.accessToken;
+}
 
 export async function axiosPost<T>(url: string, data?: unknown): Promise<T> {
 	try {
-		const response = await axios.post<T>(url, data, { withCredentials: true });
+		const response = await privateAxiosClient.post<T>(url, data, {
+			withCredentials: true,
+		});
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError) {
