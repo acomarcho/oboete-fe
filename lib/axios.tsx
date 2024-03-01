@@ -45,9 +45,7 @@ export const useAxios = () => {
 
 	async function axiosPost<T>(url: string, data?: unknown) {
 		try {
-			const response = await privateAxiosClient.post<T>(url, data, {
-				withCredentials: true,
-			});
+			const response = await privateAxiosClient.post<T>(url, data);
 			return response.data;
 		} catch (error) {
 			if (error instanceof AxiosError) {
