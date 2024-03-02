@@ -41,6 +41,10 @@ export default function RegisterForm() {
 	const router = useRouter();
 
 	const onSubmit = handleSubmit(async (data) => {
+		if (pageStatus === PageStatus.Loading) {
+			return;
+		}
+
 		try {
 			setPageStatus(PageStatus.Loading);
 

@@ -9,11 +9,14 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { useAxios } from "@/lib/axios";
+import { BE_URL, PageStatus } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const addCardSchema = Joi.object({
 	content: Joi.string().required(),
@@ -24,6 +27,9 @@ type AddCardFormData = {
 };
 
 export default function AddCardButtonWithDialog() {
+	const { axiosPost } = useAxios();
+
+	const [pageStatus, setPageStatus] = useState<PageStatus>(PageStatus.None);
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 	const {
@@ -35,8 +41,24 @@ export default function AddCardButtonWithDialog() {
 		resolver: joiResolver(addCardSchema),
 	});
 
-	const onSubmit = handleSubmit((data) => {
-		console.log(data);
+	const onSubmit = handleSubmit(async (data) => {
+		if (pageStatus === PageStatus.Loading) {
+			return;
+		}
+
+		try {
+			setPageStatus(PageStatus.Loading);
+
+			await axiosPost(`${BE_URL}/user-card/`, {
+				content: data.content,
+			});
+			toast.success("Card successfully added!");
+
+			handleOpenChange(false);
+		} catch {
+		} finally {
+			setPageStatus(PageStatus.None);
+		}
 	});
 
 	const handleOpenChange = (open: boolean) => {
@@ -85,10 +107,11 @@ export default function AddCardButtonWithDialog() {
 									</p>
 								</div>
 								<button
-									className="bg-blue-800 text-blue-100 px-4 py-2 rounded-md mt-8 transition hover:bg-blue-900 hover:shadow"
+									className="bg-blue-800 text-blue-100 px-4 py-2 rounded-md mt-8 transition hover:bg-blue-900 hover:shadow disabled:cursor-not-allowed disabled:opacity-50"
 									type="submit"
+									disabled={pageStatus === PageStatus.Loading}
 								>
-									Submit!
+									Submit! {pageStatus === PageStatus.Loading && "..."}
 								</button>
 							</form>
 						</div>
