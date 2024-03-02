@@ -1,4 +1,5 @@
 import FadeOnScroll from "@/components/animation/fade-on-scroll";
+import CtaButton from "@/components/home/cta-button";
 
 export default function Home() {
 	return (
@@ -12,12 +13,7 @@ export default function Home() {
 								Always remember, with the power of simplicity and spaced
 								repetition.
 							</p>
-							<a
-								href="/register"
-								className="inline-block mt-12 bg-blue-200 text-blue-950 px-4 py-2 font-bold rounded-md transition-all hover:bg-blue-300 hover:cursor-pointer"
-							>
-								Start remembering, now!
-							</a>
+							<CtaButton>Start remembering, now!</CtaButton>
 						</FadeOnScroll>
 					</div>
 				</div>
