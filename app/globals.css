@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .hover-underline-effect {
+    padding-bottom: 1px;
+    @apply text-blue-100;
+    position: relative;
+  }
+
+  .hover-underline-effect::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(3px);
+    @apply bg-blue-100;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .hover-underline-effect:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

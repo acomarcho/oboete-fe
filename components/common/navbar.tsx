@@ -8,8 +8,6 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAxios } from "@/lib/axios";
@@ -47,7 +45,7 @@ export default function Navbar() {
 				<div className="flex justify-between items-center h-full">
 					<Link
 						href="/"
-						className="uppercase tracking-widest text-blue-100 font-bold text-xl"
+						className="uppercase tracking-widest text-blue-100 font-bold text-xl hover-underline-effect"
 					>
 						Oboete
 					</Link>
