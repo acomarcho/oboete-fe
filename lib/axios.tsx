@@ -64,5 +64,26 @@ export const useAxios = () => {
 		}
 	}
 
-	return { axiosPost };
+	async function axiosGet<T>(url: string) {
+		try {
+			const response = await privateAxiosClient.get<T>(url);
+			return response.data;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				toast.error(error.response?.data?.error || "Internal server error");
+
+				if (error?.response?.status === StatusCodes.UNAUTHORIZED) {
+					setUser(null);
+					router.replace("/");
+				}
+
+				throw error;
+			}
+
+			toast.error("An error occured while making request ...");
+			throw error;
+		}
+	}
+
+	return { axiosPost, axiosGet };
 };
