@@ -99,7 +99,7 @@ export default function AddCardButtonWithDialog() {
 									/>
 									{errors.content && (
 										<p className="text-red-500 text-xs">
-											Username or email cannot be empty!
+											Content cannot be empty!
 										</p>
 									)}
 									<p className="text-gray-500 text-xs">

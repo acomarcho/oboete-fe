@@ -92,14 +92,34 @@ export default function CardsForReview() {
 		);
 	}
 
-	return queryData.userCards.map((userCard) => {
-		return (
-			<div
-				key={userCard.id}
-				className="flex gap-4 items-center mt-8 p-4 bg-blue-50 rounded-md shadow"
-			>
-				<p className="max-w-[40ch]">{userCard.content}</p>
-			</div>
-		);
-	});
+	return (
+		<div className="mt-8 flex flex-col gap-4">
+			{queryData.userCards.map((userCard) => {
+				return (
+					<div
+						key={userCard.id}
+						className="p-4 bg-blue-50 rounded-md shadow transition transform hover:scale-[1.02] hover:shadow-lg"
+					>
+						<p className="max-w-[40ch] text-blue-900 font-bold text-xl">
+							{userCard.content}
+						</p>
+						<div className="flex flex-col gap-2 mt-8">
+							<p className="text-xs uppercase font-bold tracking-widest text-blue-600">
+								Created at
+							</p>
+							<p className="text-blue-500 text-sm">
+								{moment(userCard.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+							</p>
+							<p className="text-xs uppercase font-bold tracking-widest text-blue-600">
+								Due for review since
+							</p>
+							<p className="text-blue-500 text-sm">
+								{moment(userCard.dueReviewAt).format("MMMM Do YYYY, h:mm:ss a")}
+							</p>
+						</div>
+					</div>
+				);
+			})}
+		</div>
+	);
 }

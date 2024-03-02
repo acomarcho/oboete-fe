@@ -47,7 +47,7 @@ export default function Navbar() {
 						href="/"
 						className="uppercase tracking-widest text-blue-100 font-bold text-xl hover-underline-effect"
 					>
-						Oboete
+						覚えて
 					</Link>
 					{user !== null && (
 						<DropdownMenu>
