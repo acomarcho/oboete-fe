@@ -18,7 +18,7 @@ export default function CardsPage() {
 					Card for review
 				</h1>
 				<p className="text-blue-800 mt-1">
-					These cards are due for you to review!
+					Make some time to review the cards!
 				</p>
 				<CardsForReview />
 			</div>
