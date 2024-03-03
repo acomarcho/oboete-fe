@@ -63,7 +63,7 @@ export default function LoginForm() {
 
 			toast.success("Successfully logged in!");
 
-			router.push("/");
+			router.push("/cards");
 		} catch {
 		} finally {
 			setPageStatus(PageStatus.None);
