@@ -3,7 +3,6 @@
 import {
 	Dialog,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -81,41 +80,39 @@ export default function AddCardButtonWithDialog() {
 					<DialogTitle className="text-xl text-blue-950 text-left">
 						Add a card!
 					</DialogTitle>
-					<DialogDescription asChild>
-						<div className="mt-6">
-							<form className="text-left" onSubmit={onSubmit}>
-								<div className="flex flex-col gap-2">
-									<label htmlFor="content" className="text-gray-950">
-										What do you want to recall later?{" "}
-										<span className="text-red-500">*</span>
-									</label>
-									<Input
-										className={cn("text-blue-900", {
-											"border-red-500": errors.content,
-										})}
-										type="text"
-										placeholder="Adapter and facade pattern"
-										{...register("content")}
-									/>
-									{errors.content && (
-										<p className="text-red-500 text-xs">
-											Content cannot be empty!
-										</p>
-									)}
-									<p className="text-gray-500 text-xs">
-										Keep it simple and short!
+					<div className="mt-6">
+						<form className="text-left" onSubmit={onSubmit}>
+							<div className="flex flex-col gap-2">
+								<label htmlFor="content" className="text-gray-950">
+									What do you want to recall later?{" "}
+									<span className="text-red-500">*</span>
+								</label>
+								<Input
+									className={cn("text-blue-900", {
+										"border-red-500": errors.content,
+									})}
+									type="text"
+									placeholder="Adapter and facade pattern"
+									{...register("content")}
+								/>
+								{errors.content && (
+									<p className="text-red-500 text-xs">
+										Content cannot be empty!
 									</p>
-								</div>
-								<button
-									className="bg-blue-800 text-blue-100 px-4 py-2 rounded-md mt-8 transition hover:bg-blue-900 hover:shadow disabled:cursor-not-allowed disabled:opacity-50"
-									type="submit"
-									disabled={pageStatus === PageStatus.Loading}
-								>
-									Submit! {pageStatus === PageStatus.Loading && "..."}
-								</button>
-							</form>
-						</div>
-					</DialogDescription>
+								)}
+								<p className="text-gray-500 text-xs">
+									Keep it simple and short!
+								</p>
+							</div>
+							<button
+								className="bg-blue-800 text-blue-100 px-4 py-2 rounded-md mt-8 transition hover:bg-blue-900 hover:shadow disabled:cursor-not-allowed disabled:opacity-50"
+								type="submit"
+								disabled={pageStatus === PageStatus.Loading}
+							>
+								Submit! {pageStatus === PageStatus.Loading && "..."}
+							</button>
+						</form>
+					</div>
 				</DialogHeader>
 			</DialogContent>
 		</Dialog>
