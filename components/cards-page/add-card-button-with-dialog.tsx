@@ -12,6 +12,7 @@ import { useAxios } from "@/lib/axios";
 import { BE_URL, PageStatus } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { useQueryClient } from "@tanstack/react-query";
 import Joi from "joi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -26,6 +27,7 @@ type AddCardFormData = {
 };
 
 export default function AddCardButtonWithDialog() {
+	const queryClient = useQueryClient();
 	const { axiosPost } = useAxios();
 
 	const [pageStatus, setPageStatus] = useState<PageStatus>(PageStatus.None);
@@ -51,6 +53,10 @@ export default function AddCardButtonWithDialog() {
 			await axiosPost(`${BE_URL}/user-card/`, {
 				content: data.content,
 			});
+			await queryClient.invalidateQueries({
+				queryKey: ["cards-for-review"],
+			});
+
 			toast.success("Card successfully added!");
 
 			handleOpenChange(false);
